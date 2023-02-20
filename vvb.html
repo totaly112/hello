@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>My Secured Website</title>
+	<style>
+		body {
+			background-color: #FFD700;
+			font-family: Arial, sans-serif;
+			font-size: 16px;
+			color: #333;
+		}
+		
+		header {
+			background-color: #F44336;
+			color: #fff;
+			padding: 10px;
+			text-align: center;
+		}
+		
+		main {
+			margin: 20px;
+			padding: 20px;
+			background-color: #fff;
+			box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+			border-radius: 10px;
+			text-align: center;
+		}
+		
+		h1 {
+			font-size: 48px;
+			margin: 0;
+		}
+		
+		p {
+			font-size: 24px;
+			margin: 20px 0;
+		}
+		
+		#counter {
+			font-size: 16px;
+			color: #999;
+			margin-top: 50px;
+		}
+		
+		#block-message {
+			font-size: 24px;
+			color: #F44336;
+			margin-top: 50px;
+			display: none;
+		}
+	</style>
+</head>
+<body>
+	<header>
+		<h1>Congratulations!</h1>
+	</header>
+	<main>
+		<p>You have successfully unlocked this website.</p>
+		<p>This website is all about motivating you to reach your goals and achieve your dreams. Remember, with hard work and determination, anything is possible!</p>
+		<div id="counter">Attempts remaining: 5</div>
+		<div id="block-message">You have been blocked due to too many failed attempts. Please try again later.</div>
+	</main>
+	<footer>
+		<p>&copy; 2023 My Secured Website. All rights reserved.</p>
+	</footer>
+	
+	<script>
+		const form = document.querySelector('form');
+		const content = document.querySelector('#content');
+		const counter = document.querySelector('#counter');
+		const blockMessage = document.querySelector('#block-message');
+		let attempts = 5;
+
+		form.addEventListener('submit', (event) => {
+			event.preventDefault();
+			const passcode = form.elements['passcode'].value;
+
+			if (passcode === 'flimy') {
+				form.style.display = 'none';
+				content.style.display = 'block';
+			} else {
+				attempts--;
+				counter.textContent = `Attempts remaining: ${attempts}`;
+
+				if (attempts === 0) {
+					form.style.display = 'none';
+					blockMessage.style.display = 'block';
+				} else {
+					alert('Incorrect passcode. Please try again.');
+				}
+			}
+		});
+	</script>
+</body>
+</html>
